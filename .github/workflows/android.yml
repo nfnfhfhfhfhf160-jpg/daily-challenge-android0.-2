@@ -19,10 +19,14 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
-      - name: Build APK
+      - name: Build APK (with logs)
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace
+
+      # 🔍 FULL DEBUG (important)
+      - name: Show all files
+        run: ls -R
 
       - name: Find APK
         run: find . -name "*.apk"

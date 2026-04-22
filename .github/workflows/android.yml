@@ -29,13 +29,13 @@ jobs:
 
     - name: Find APK Location (Debug Step)
       run: |
-        echo "Searching for generated APKs..."
-        find app/build/outputs/apk -name "*.apk" -type f
+        echo "Searching for generated APKs everywhere in the project..."
+        find . -name "*.apk" -type f
         
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: app-debug-apk
-        # Using wildcard ensures any APK generated in this folder is uploaded
-        path: app/build/outputs/apk/**/*.apk
+        # ഇത് പ്രൊജക്റ്റിലെ ഏത് ഫോൾഡറിലുള്ള APK യെയും കണ്ടെത്തി അപ്‌ലോഡ് ചെയ്യും
+        path: '**/*.apk'
         if-no-files-found: error
